@@ -9,6 +9,8 @@ import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { TodoInputComponent } from './components/todo-input/todo-input.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { FormsModule } from '@angular/forms';
+import { from } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { FooterComponent } from './components/footer/footer.component';
   ],
   imports: [
     BrowserModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    // ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

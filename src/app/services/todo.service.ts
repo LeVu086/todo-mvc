@@ -22,7 +22,7 @@ export class TodoService {
 
   fetchFromLocalService() {
     this.todos = this.storageService.getValue<Todo[]>(TodoService.TodoStorageKey) || [];
-    this.filteredTodos = [...this.todos.map(todo => ({...todo}))];
+    this.filteredTodos = [...this.todos.map(todo => ({ ...todo }))];
     this.updateTodosData();
   }
 
@@ -30,6 +30,12 @@ export class TodoService {
     this.storageService.setObject(TodoService.TodoStorageKey, this.todos);
     this.filterTodos(this.currentFilter, false);
     this.updateTodosData();
+  }
+  addTodo(content: string) {
+    const date = new Date(Date.now()).getTime();
+    const newTodo = new Todo(date, content);
+    this.todos.unshift(newTodo);
+    this.updateTodoLocalService();
   }
 
   filterTodos(filter: Filter, isFiltering: boolean = true) {
@@ -42,11 +48,11 @@ export class TodoService {
         this.filteredTodos = this.todos.filter(todo => todo.isCompleted);
         break;
       case Filter.All:
-        this.filteredTodos = [...this.todos.map(todo => ({...todo}))];
+        this.filteredTodos = [...this.todos.map(todo => ({ ...todo }))];
         break;
     }
 
-    if(isFiltering) {
+    if (isFiltering) {
       this.updateTodosData();
     }
   }
