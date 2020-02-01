@@ -70,6 +70,11 @@ export class TodoService {
     this.updateTodoLocalService();
   }
 
+  clearCompleted() {
+    this.todos = this.todos.filter(todo => !todo.isCompleted);
+    this.updateTodoLocalService();
+  }
+
   filterTodos(filter: Filter, isFiltering: boolean = true) {
     this.currentFilter = filter;
     switch (filter) {
